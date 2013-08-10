@@ -1,0 +1,29 @@
+     // ABCD
+     
+break		    
+continue	    
+else		    
+float		    
+if		    
+int		    
+return		    
+void		    
+while		    
+bool		    
+true		    
+false		    
+string		    
+++		    
+--		    
+<=		    
+>=		    
+==		    
+!=		    
+&&		    
+||		    
+"My String!!"
+_M_y_V_a_r_4_b_7_e_N_4_M_3
+1234.
+1234.0		    
+1234		    
+.                   

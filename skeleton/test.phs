@@ -1,0 +1,15 @@
+int e = 0;
+e = e + 1;
+float f = 0.0;
+f = 5.0;
+f = f / 10.0;
+f = f + 0.5;
+int intF = ( int ) f;
+
+if ( e == intF )
+{
+	print( "e and f are equal!" );
+} else
+{
+	print( "e and f are NOT equal!" );
+}

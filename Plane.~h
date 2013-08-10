@@ -1,0 +1,67 @@
+//---------------------------------------------------------------------------
+
+#ifndef PlaneH
+#define PlaneH
+
+#include "Entity.h"
+
+const float PI_OVER_180 = 3.14159265 / 180.0;
+
+class Plane : public Entity
+{
+    public:
+        Plane( void )
+        {
+            addNew( this );
+            type = TYPE_PLANE;
+            normal[ 0 ] = 0;
+            normal[ 1 ] = 0;
+            normal[ 2 ] = 0;
+            d = 0;
+            setScale( 10.0, 0.0, 10.0 );
+        };
+
+        Plane( float angle, float d, float size )
+        {
+            addNew( this );
+            type = TYPE_PLANE;
+            this->normal[ 0 ] = 0.0;
+            this->normal[ 1 ] = cos( angle * PI_OVER_180 );
+            this->normal[ 2 ] = sin( angle * PI_OVER_180 );
+            this->d = d;
+
+            normal.normalize();
+
+            setScale( size, 0.0, size );
+            setRot( angle, 0.0, 0.0 );
+            setD0( 0.0, -d, 0.0 );
+        };
+
+        float getDistFrom( Point p1 )
+        {
+            float k = ( normal.dot( p1 ) + d ) / ( normal.dot( normal ) );
+            Point dist = normal * k;
+
+            return dist.getMagnitude();
+        };
+
+        std::vector< Triangle > *getModelInfo( void )
+        {
+            return &model;
+        };
+
+        bool collidesWith( Entity *other )
+        {
+            return false;
+        };
+
+    private:
+        static std::vector< Triangle > model;
+        Point normal;
+        float d;
+        
+};
+
+//---------------------------------------------------------------------------
+#endif
+ 

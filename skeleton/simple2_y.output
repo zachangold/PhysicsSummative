@@ -1,0 +1,1192 @@
+Terminals unused in grammar
+
+   TK_break
+   TK_continue
+   TK_return
+   TK_while
+   TK_increment
+   TK_decrement
+   TK_less_eq
+   TK_greater_eq
+   TK_equal_to
+   TK_not_equal
+   TK_log_and
+   TK_log_or
+   TK_lp_round
+   TK_rp_round
+   TK_lp_square
+   TK_rp_square
+   TK_lp_brace
+   TK_rp_brace
+   TK_dot
+   TK_log_not
+   TK_plus
+   TK_minus
+   TK_times
+   TK_divide
+   TK_modulo
+   TK_greater
+   TK_less
+   TK_equals
+   TK_comma
+   TK_semicolon
+
+
+Grammar
+
+    0 $accept: start $end
+
+    1 start: line_list
+
+    2 line_list: line
+    3          | line_list line
+
+    4 line: ';'
+    5     | statement ';'
+
+    6 def_param_list: def_parameter
+    7               | def_param_list ',' def_parameter
+
+    8 no_parameter: /* empty */
+    9             | TK_void
+
+   10 def_parameter: TK_int TK_ident
+   11              | TK_float TK_ident
+   12              | TK_string TK_ident
+   13              | TK_bool TK_ident
+   14              | TK_ident TK_ident
+
+   15 bool_val: TK_true
+   16         | TK_false
+
+   17 funcdef_params: def_param_list
+   18               | no_parameter
+
+   19 funcdef: TK_int TK_ident '(' funcdef_params ')'
+   20        | TK_float TK_ident '(' funcdef_params ')'
+   21        | TK_bool TK_ident '(' funcdef_params ')'
+   22        | TK_ident TK_ident '(' funcdef_params ')'
+   23        | TK_string TK_ident '(' funcdef_params ')'
+   24        | TK_void TK_ident '(' funcdef_params ')'
+
+   25 funccall_params: /* empty */
+   26                | funccall_param_list
+
+   27 funccall_param_list: funccall_param
+   28                    | funccall_param_list ',' funccall_param
+
+   29 funccall_param: TK_float_val
+   30               | TK_int_val
+   31               | bool_val
+   32               | TK_string_val
+   33               | TK_ident
+
+   34 funccall: TK_ident '(' funccall_params ')'
+
+   35 obj_val: TK_ident
+   36        | funccall
+
+   37 code_body: '{' code_body_middle
+
+   38 code_body_middle: '}'
+   39                 | line code_body_middle
+
+   40 condition_expr: bool_val
+
+   41 else_block: /* empty */
+   42           | TK_else if_block
+   43           | TK_else code_body
+
+   44 if_block: TK_if '(' condition_expr ')' code_body else_block
+
+   45 statement: TK_int TK_ident
+   46          | TK_int TK_ident '=' TK_int_val
+   47          | TK_float TK_ident
+   48          | TK_float TK_ident '=' TK_float_val
+   49          | TK_string TK_ident
+   50          | TK_string TK_ident '=' TK_string_val
+   51          | TK_bool TK_ident
+   52          | TK_bool TK_ident '=' bool_val
+   53          | TK_ident TK_ident
+   54          | TK_ident '=' TK_int_val
+   55          | TK_ident '=' TK_float_val
+   56          | TK_ident '=' TK_string_val
+   57          | funcdef
+   58          | funcdef code_body
+   59          | funccall
+   60          | if_block
+   61          | obj_val '.' funccall
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 19 20 21 22 23 24 34 44
+')' (41) 19 20 21 22 23 24 34 44
+',' (44) 7 28
+'.' (46) 61
+';' (59) 4 5
+'=' (61) 46 48 50 52 54 55 56
+'{' (123) 37
+'}' (125) 38
+error (256)
+TK_int_val (258) 30 46 54
+TK_float_val (259) 29 48 55
+TK_ident (260) 10 11 12 13 14 19 20 21 22 23 24 33 34 35 45 46 47 48
+    49 50 51 52 53 54 55 56
+TK_string_val (261) 32 50 56
+TK_break (262)
+TK_continue (263)
+TK_else (264) 42 43
+TK_float (265) 11 20 47 48
+TK_if (266) 44
+TK_int (267) 10 19 45 46
+TK_return (268)
+TK_void (269) 9 24
+TK_while (270)
+TK_string (271) 12 23 49 50
+TK_bool (272) 13 21 51 52
+TK_true (273) 15
+TK_false (274) 16
+TK_increment (275)
+TK_decrement (276)
+TK_less_eq (277)
+TK_greater_eq (278)
+TK_equal_to (279)
+TK_not_equal (280)
+TK_log_and (281)
+TK_log_or (282)
+TK_lp_round (283)
+TK_rp_round (284)
+TK_lp_square (285)
+TK_rp_square (286)
+TK_lp_brace (287)
+TK_rp_brace (288)
+TK_dot (289)
+TK_log_not (290)
+TK_plus (291)
+TK_minus (292)
+TK_times (293)
+TK_divide (294)
+TK_modulo (295)
+TK_greater (296)
+TK_less (297)
+TK_equals (298)
+TK_comma (299)
+TK_semicolon (300)
+
+
+Nonterminals, with rules where they appear
+
+$accept (54)
+    on left: 0
+start (55)
+    on left: 1, on right: 0
+line_list (56)
+    on left: 2 3, on right: 1 3
+line (57)
+    on left: 4 5, on right: 2 3 39
+def_param_list (58)
+    on left: 6 7, on right: 7 17
+no_parameter (59)
+    on left: 8 9, on right: 18
+def_parameter (60)
+    on left: 10 11 12 13 14, on right: 6 7
+bool_val (61)
+    on left: 15 16, on right: 31 40 52
+funcdef_params (62)
+    on left: 17 18, on right: 19 20 21 22 23 24
+funcdef (63)
+    on left: 19 20 21 22 23 24, on right: 57 58
+funccall_params (64)
+    on left: 25 26, on right: 34
+funccall_param_list (65)
+    on left: 27 28, on right: 26 28
+funccall_param (66)
+    on left: 29 30 31 32 33, on right: 27 28
+funccall (67)
+    on left: 34, on right: 36 59 61
+obj_val (68)
+    on left: 35 36, on right: 61
+code_body (69)
+    on left: 37, on right: 43 44 58
+code_body_middle (70)
+    on left: 38 39, on right: 37 39
+condition_expr (71)
+    on left: 40, on right: 44
+else_block (72)
+    on left: 41 42 43, on right: 44
+if_block (73)
+    on left: 44, on right: 42 60
+statement (74)
+    on left: 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61, on right:
+    5
+
+
+state 0
+
+    0 $accept: . start $end
+
+    TK_ident   shift, and go to state 1
+    TK_float   shift, and go to state 2
+    TK_if      shift, and go to state 3
+    TK_int     shift, and go to state 4
+    TK_void    shift, and go to state 5
+    TK_string  shift, and go to state 6
+    TK_bool    shift, and go to state 7
+    ';'        shift, and go to state 8
+
+    start      go to state 9
+    line_list  go to state 10
+    line       go to state 11
+    funcdef    go to state 12
+    funccall   go to state 13
+    obj_val    go to state 14
+    if_block   go to state 15
+    statement  go to state 16
+
+
+state 1
+
+   22 funcdef: TK_ident . TK_ident '(' funcdef_params ')'
+   34 funccall: TK_ident . '(' funccall_params ')'
+   35 obj_val: TK_ident .
+   53 statement: TK_ident . TK_ident
+   54          | TK_ident . '=' TK_int_val
+   55          | TK_ident . '=' TK_float_val
+   56          | TK_ident . '=' TK_string_val
+
+    TK_ident  shift, and go to state 17
+    '('       shift, and go to state 18
+    '='       shift, and go to state 19
+
+    $default  reduce using rule 35 (obj_val)
+
+
+state 2
+
+   20 funcdef: TK_float . TK_ident '(' funcdef_params ')'
+   47 statement: TK_float . TK_ident
+   48          | TK_float . TK_ident '=' TK_float_val
+
+    TK_ident  shift, and go to state 20
+
+
+state 3
+
+   44 if_block: TK_if . '(' condition_expr ')' code_body else_block
+
+    '('  shift, and go to state 21
+
+
+state 4
+
+   19 funcdef: TK_int . TK_ident '(' funcdef_params ')'
+   45 statement: TK_int . TK_ident
+   46          | TK_int . TK_ident '=' TK_int_val
+
+    TK_ident  shift, and go to state 22
+
+
+state 5
+
+   24 funcdef: TK_void . TK_ident '(' funcdef_params ')'
+
+    TK_ident  shift, and go to state 23
+
+
+state 6
+
+   23 funcdef: TK_string . TK_ident '(' funcdef_params ')'
+   49 statement: TK_string . TK_ident
+   50          | TK_string . TK_ident '=' TK_string_val
+
+    TK_ident  shift, and go to state 24
+
+
+state 7
+
+   21 funcdef: TK_bool . TK_ident '(' funcdef_params ')'
+   51 statement: TK_bool . TK_ident
+   52          | TK_bool . TK_ident '=' bool_val
+
+    TK_ident  shift, and go to state 25
+
+
+state 8
+
+    4 line: ';' .
+
+    $default  reduce using rule 4 (line)
+
+
+state 9
+
+    0 $accept: start . $end
+
+    $end  shift, and go to state 26
+
+
+state 10
+
+    1 start: line_list .
+    3 line_list: line_list . line
+
+    TK_ident   shift, and go to state 1
+    TK_float   shift, and go to state 2
+    TK_if      shift, and go to state 3
+    TK_int     shift, and go to state 4
+    TK_void    shift, and go to state 5
+    TK_string  shift, and go to state 6
+    TK_bool    shift, and go to state 7
+    ';'        shift, and go to state 8
+
+    $default  reduce using rule 1 (start)
+
+    line       go to state 27
+    funcdef    go to state 12
+    funccall   go to state 13
+    obj_val    go to state 14
+    if_block   go to state 15
+    statement  go to state 16
+
+
+state 11
+
+    2 line_list: line .
+
+    $default  reduce using rule 2 (line_list)
+
+
+state 12
+
+   57 statement: funcdef .
+   58          | funcdef . code_body
+
+    '{'  shift, and go to state 28
+
+    $default  reduce using rule 57 (statement)
+
+    code_body  go to state 29
+
+
+state 13
+
+   36 obj_val: funccall .
+   59 statement: funccall .
+
+    ';'       reduce using rule 59 (statement)
+    $default  reduce using rule 36 (obj_val)
+
+
+state 14
+
+   61 statement: obj_val . '.' funccall
+
+    '.'  shift, and go to state 30
+
+
+state 15
+
+   60 statement: if_block .
+
+    $default  reduce using rule 60 (statement)
+
+
+state 16
+
+    5 line: statement . ';'
+
+    ';'  shift, and go to state 31
+
+
+state 17
+
+   22 funcdef: TK_ident TK_ident . '(' funcdef_params ')'
+   53 statement: TK_ident TK_ident .
+
+    '('  shift, and go to state 32
+
+    $default  reduce using rule 53 (statement)
+
+
+state 18
+
+   34 funccall: TK_ident '(' . funccall_params ')'
+
+    TK_int_val     shift, and go to state 33
+    TK_float_val   shift, and go to state 34
+    TK_ident       shift, and go to state 35
+    TK_string_val  shift, and go to state 36
+    TK_true        shift, and go to state 37
+    TK_false       shift, and go to state 38
+
+    $default  reduce using rule 25 (funccall_params)
+
+    bool_val             go to state 39
+    funccall_params      go to state 40
+    funccall_param_list  go to state 41
+    funccall_param       go to state 42
+
+
+state 19
+
+   54 statement: TK_ident '=' . TK_int_val
+   55          | TK_ident '=' . TK_float_val
+   56          | TK_ident '=' . TK_string_val
+
+    TK_int_val     shift, and go to state 43
+    TK_float_val   shift, and go to state 44
+    TK_string_val  shift, and go to state 45
+
+
+state 20
+
+   20 funcdef: TK_float TK_ident . '(' funcdef_params ')'
+   47 statement: TK_float TK_ident .
+   48          | TK_float TK_ident . '=' TK_float_val
+
+    '('  shift, and go to state 46
+    '='  shift, and go to state 47
+
+    $default  reduce using rule 47 (statement)
+
+
+state 21
+
+   44 if_block: TK_if '(' . condition_expr ')' code_body else_block
+
+    TK_true   shift, and go to state 37
+    TK_false  shift, and go to state 38
+
+    bool_val        go to state 48
+    condition_expr  go to state 49
+
+
+state 22
+
+   19 funcdef: TK_int TK_ident . '(' funcdef_params ')'
+   45 statement: TK_int TK_ident .
+   46          | TK_int TK_ident . '=' TK_int_val
+
+    '('  shift, and go to state 50
+    '='  shift, and go to state 51
+
+    $default  reduce using rule 45 (statement)
+
+
+state 23
+
+   24 funcdef: TK_void TK_ident . '(' funcdef_params ')'
+
+    '('  shift, and go to state 52
+
+
+state 24
+
+   23 funcdef: TK_string TK_ident . '(' funcdef_params ')'
+   49 statement: TK_string TK_ident .
+   50          | TK_string TK_ident . '=' TK_string_val
+
+    '('  shift, and go to state 53
+    '='  shift, and go to state 54
+
+    $default  reduce using rule 49 (statement)
+
+
+state 25
+
+   21 funcdef: TK_bool TK_ident . '(' funcdef_params ')'
+   51 statement: TK_bool TK_ident .
+   52          | TK_bool TK_ident . '=' bool_val
+
+    '('  shift, and go to state 55
+    '='  shift, and go to state 56
+
+    $default  reduce using rule 51 (statement)
+
+
+state 26
+
+    0 $accept: start $end .
+
+    $default  accept
+
+
+state 27
+
+    3 line_list: line_list line .
+
+    $default  reduce using rule 3 (line_list)
+
+
+state 28
+
+   37 code_body: '{' . code_body_middle
+
+    TK_ident   shift, and go to state 1
+    TK_float   shift, and go to state 2
+    TK_if      shift, and go to state 3
+    TK_int     shift, and go to state 4
+    TK_void    shift, and go to state 5
+    TK_string  shift, and go to state 6
+    TK_bool    shift, and go to state 7
+    ';'        shift, and go to state 8
+    '}'        shift, and go to state 57
+
+    line              go to state 58
+    funcdef           go to state 12
+    funccall          go to state 13
+    obj_val           go to state 14
+    code_body_middle  go to state 59
+    if_block          go to state 15
+    statement         go to state 16
+
+
+state 29
+
+   58 statement: funcdef code_body .
+
+    $default  reduce using rule 58 (statement)
+
+
+state 30
+
+   61 statement: obj_val '.' . funccall
+
+    TK_ident  shift, and go to state 60
+
+    funccall  go to state 61
+
+
+state 31
+
+    5 line: statement ';' .
+
+    $default  reduce using rule 5 (line)
+
+
+state 32
+
+   22 funcdef: TK_ident TK_ident '(' . funcdef_params ')'
+
+    TK_ident   shift, and go to state 62
+    TK_float   shift, and go to state 63
+    TK_int     shift, and go to state 64
+    TK_void    shift, and go to state 65
+    TK_string  shift, and go to state 66
+    TK_bool    shift, and go to state 67
+
+    $default  reduce using rule 8 (no_parameter)
+
+    def_param_list  go to state 68
+    no_parameter    go to state 69
+    def_parameter   go to state 70
+    funcdef_params  go to state 71
+
+
+state 33
+
+   30 funccall_param: TK_int_val .
+
+    $default  reduce using rule 30 (funccall_param)
+
+
+state 34
+
+   29 funccall_param: TK_float_val .
+
+    $default  reduce using rule 29 (funccall_param)
+
+
+state 35
+
+   33 funccall_param: TK_ident .
+
+    $default  reduce using rule 33 (funccall_param)
+
+
+state 36
+
+   32 funccall_param: TK_string_val .
+
+    $default  reduce using rule 32 (funccall_param)
+
+
+state 37
+
+   15 bool_val: TK_true .
+
+    $default  reduce using rule 15 (bool_val)
+
+
+state 38
+
+   16 bool_val: TK_false .
+
+    $default  reduce using rule 16 (bool_val)
+
+
+state 39
+
+   31 funccall_param: bool_val .
+
+    $default  reduce using rule 31 (funccall_param)
+
+
+state 40
+
+   34 funccall: TK_ident '(' funccall_params . ')'
+
+    ')'  shift, and go to state 72
+
+
+state 41
+
+   26 funccall_params: funccall_param_list .
+   28 funccall_param_list: funccall_param_list . ',' funccall_param
+
+    ','  shift, and go to state 73
+
+    $default  reduce using rule 26 (funccall_params)
+
+
+state 42
+
+   27 funccall_param_list: funccall_param .
+
+    $default  reduce using rule 27 (funccall_param_list)
+
+
+state 43
+
+   54 statement: TK_ident '=' TK_int_val .
+
+    $default  reduce using rule 54 (statement)
+
+
+state 44
+
+   55 statement: TK_ident '=' TK_float_val .
+
+    $default  reduce using rule 55 (statement)
+
+
+state 45
+
+   56 statement: TK_ident '=' TK_string_val .
+
+    $default  reduce using rule 56 (statement)
+
+
+state 46
+
+   20 funcdef: TK_float TK_ident '(' . funcdef_params ')'
+
+    TK_ident   shift, and go to state 62
+    TK_float   shift, and go to state 63
+    TK_int     shift, and go to state 64
+    TK_void    shift, and go to state 65
+    TK_string  shift, and go to state 66
+    TK_bool    shift, and go to state 67
+
+    $default  reduce using rule 8 (no_parameter)
+
+    def_param_list  go to state 68
+    no_parameter    go to state 69
+    def_parameter   go to state 70
+    funcdef_params  go to state 74
+
+
+state 47
+
+   48 statement: TK_float TK_ident '=' . TK_float_val
+
+    TK_float_val  shift, and go to state 75
+
+
+state 48
+
+   40 condition_expr: bool_val .
+
+    $default  reduce using rule 40 (condition_expr)
+
+
+state 49
+
+   44 if_block: TK_if '(' condition_expr . ')' code_body else_block
+
+    ')'  shift, and go to state 76
+
+
+state 50
+
+   19 funcdef: TK_int TK_ident '(' . funcdef_params ')'
+
+    TK_ident   shift, and go to state 62
+    TK_float   shift, and go to state 63
+    TK_int     shift, and go to state 64
+    TK_void    shift, and go to state 65
+    TK_string  shift, and go to state 66
+    TK_bool    shift, and go to state 67
+
+    $default  reduce using rule 8 (no_parameter)
+
+    def_param_list  go to state 68
+    no_parameter    go to state 69
+    def_parameter   go to state 70
+    funcdef_params  go to state 77
+
+
+state 51
+
+   46 statement: TK_int TK_ident '=' . TK_int_val
+
+    TK_int_val  shift, and go to state 78
+
+
+state 52
+
+   24 funcdef: TK_void TK_ident '(' . funcdef_params ')'
+
+    TK_ident   shift, and go to state 62
+    TK_float   shift, and go to state 63
+    TK_int     shift, and go to state 64
+    TK_void    shift, and go to state 65
+    TK_string  shift, and go to state 66
+    TK_bool    shift, and go to state 67
+
+    $default  reduce using rule 8 (no_parameter)
+
+    def_param_list  go to state 68
+    no_parameter    go to state 69
+    def_parameter   go to state 70
+    funcdef_params  go to state 79
+
+
+state 53
+
+   23 funcdef: TK_string TK_ident '(' . funcdef_params ')'
+
+    TK_ident   shift, and go to state 62
+    TK_float   shift, and go to state 63
+    TK_int     shift, and go to state 64
+    TK_void    shift, and go to state 65
+    TK_string  shift, and go to state 66
+    TK_bool    shift, and go to state 67
+
+    $default  reduce using rule 8 (no_parameter)
+
+    def_param_list  go to state 68
+    no_parameter    go to state 69
+    def_parameter   go to state 70
+    funcdef_params  go to state 80
+
+
+state 54
+
+   50 statement: TK_string TK_ident '=' . TK_string_val
+
+    TK_string_val  shift, and go to state 81
+
+
+state 55
+
+   21 funcdef: TK_bool TK_ident '(' . funcdef_params ')'
+
+    TK_ident   shift, and go to state 62
+    TK_float   shift, and go to state 63
+    TK_int     shift, and go to state 64
+    TK_void    shift, and go to state 65
+    TK_string  shift, and go to state 66
+    TK_bool    shift, and go to state 67
+
+    $default  reduce using rule 8 (no_parameter)
+
+    def_param_list  go to state 68
+    no_parameter    go to state 69
+    def_parameter   go to state 70
+    funcdef_params  go to state 82
+
+
+state 56
+
+   52 statement: TK_bool TK_ident '=' . bool_val
+
+    TK_true   shift, and go to state 37
+    TK_false  shift, and go to state 38
+
+    bool_val  go to state 83
+
+
+state 57
+
+   38 code_body_middle: '}' .
+
+    $default  reduce using rule 38 (code_body_middle)
+
+
+state 58
+
+   39 code_body_middle: line . code_body_middle
+
+    TK_ident   shift, and go to state 1
+    TK_float   shift, and go to state 2
+    TK_if      shift, and go to state 3
+    TK_int     shift, and go to state 4
+    TK_void    shift, and go to state 5
+    TK_string  shift, and go to state 6
+    TK_bool    shift, and go to state 7
+    ';'        shift, and go to state 8
+    '}'        shift, and go to state 57
+
+    line              go to state 58
+    funcdef           go to state 12
+    funccall          go to state 13
+    obj_val           go to state 14
+    code_body_middle  go to state 84
+    if_block          go to state 15
+    statement         go to state 16
+
+
+state 59
+
+   37 code_body: '{' code_body_middle .
+
+    $default  reduce using rule 37 (code_body)
+
+
+state 60
+
+   34 funccall: TK_ident . '(' funccall_params ')'
+
+    '('  shift, and go to state 18
+
+
+state 61
+
+   61 statement: obj_val '.' funccall .
+
+    $default  reduce using rule 61 (statement)
+
+
+state 62
+
+   14 def_parameter: TK_ident . TK_ident
+
+    TK_ident  shift, and go to state 85
+
+
+state 63
+
+   11 def_parameter: TK_float . TK_ident
+
+    TK_ident  shift, and go to state 86
+
+
+state 64
+
+   10 def_parameter: TK_int . TK_ident
+
+    TK_ident  shift, and go to state 87
+
+
+state 65
+
+    9 no_parameter: TK_void .
+
+    $default  reduce using rule 9 (no_parameter)
+
+
+state 66
+
+   12 def_parameter: TK_string . TK_ident
+
+    TK_ident  shift, and go to state 88
+
+
+state 67
+
+   13 def_parameter: TK_bool . TK_ident
+
+    TK_ident  shift, and go to state 89
+
+
+state 68
+
+    7 def_param_list: def_param_list . ',' def_parameter
+   17 funcdef_params: def_param_list .
+
+    ','  shift, and go to state 90
+
+    $default  reduce using rule 17 (funcdef_params)
+
+
+state 69
+
+   18 funcdef_params: no_parameter .
+
+    $default  reduce using rule 18 (funcdef_params)
+
+
+state 70
+
+    6 def_param_list: def_parameter .
+
+    $default  reduce using rule 6 (def_param_list)
+
+
+state 71
+
+   22 funcdef: TK_ident TK_ident '(' funcdef_params . ')'
+
+    ')'  shift, and go to state 91
+
+
+state 72
+
+   34 funccall: TK_ident '(' funccall_params ')' .
+
+    $default  reduce using rule 34 (funccall)
+
+
+state 73
+
+   28 funccall_param_list: funccall_param_list ',' . funccall_param
+
+    TK_int_val     shift, and go to state 33
+    TK_float_val   shift, and go to state 34
+    TK_ident       shift, and go to state 35
+    TK_string_val  shift, and go to state 36
+    TK_true        shift, and go to state 37
+    TK_false       shift, and go to state 38
+
+    bool_val        go to state 39
+    funccall_param  go to state 92
+
+
+state 74
+
+   20 funcdef: TK_float TK_ident '(' funcdef_params . ')'
+
+    ')'  shift, and go to state 93
+
+
+state 75
+
+   48 statement: TK_float TK_ident '=' TK_float_val .
+
+    $default  reduce using rule 48 (statement)
+
+
+state 76
+
+   44 if_block: TK_if '(' condition_expr ')' . code_body else_block
+
+    '{'  shift, and go to state 28
+
+    code_body  go to state 94
+
+
+state 77
+
+   19 funcdef: TK_int TK_ident '(' funcdef_params . ')'
+
+    ')'  shift, and go to state 95
+
+
+state 78
+
+   46 statement: TK_int TK_ident '=' TK_int_val .
+
+    $default  reduce using rule 46 (statement)
+
+
+state 79
+
+   24 funcdef: TK_void TK_ident '(' funcdef_params . ')'
+
+    ')'  shift, and go to state 96
+
+
+state 80
+
+   23 funcdef: TK_string TK_ident '(' funcdef_params . ')'
+
+    ')'  shift, and go to state 97
+
+
+state 81
+
+   50 statement: TK_string TK_ident '=' TK_string_val .
+
+    $default  reduce using rule 50 (statement)
+
+
+state 82
+
+   21 funcdef: TK_bool TK_ident '(' funcdef_params . ')'
+
+    ')'  shift, and go to state 98
+
+
+state 83
+
+   52 statement: TK_bool TK_ident '=' bool_val .
+
+    $default  reduce using rule 52 (statement)
+
+
+state 84
+
+   39 code_body_middle: line code_body_middle .
+
+    $default  reduce using rule 39 (code_body_middle)
+
+
+state 85
+
+   14 def_parameter: TK_ident TK_ident .
+
+    $default  reduce using rule 14 (def_parameter)
+
+
+state 86
+
+   11 def_parameter: TK_float TK_ident .
+
+    $default  reduce using rule 11 (def_parameter)
+
+
+state 87
+
+   10 def_parameter: TK_int TK_ident .
+
+    $default  reduce using rule 10 (def_parameter)
+
+
+state 88
+
+   12 def_parameter: TK_string TK_ident .
+
+    $default  reduce using rule 12 (def_parameter)
+
+
+state 89
+
+   13 def_parameter: TK_bool TK_ident .
+
+    $default  reduce using rule 13 (def_parameter)
+
+
+state 90
+
+    7 def_param_list: def_param_list ',' . def_parameter
+
+    TK_ident   shift, and go to state 62
+    TK_float   shift, and go to state 63
+    TK_int     shift, and go to state 64
+    TK_string  shift, and go to state 66
+    TK_bool    shift, and go to state 67
+
+    def_parameter  go to state 99
+
+
+state 91
+
+   22 funcdef: TK_ident TK_ident '(' funcdef_params ')' .
+
+    $default  reduce using rule 22 (funcdef)
+
+
+state 92
+
+   28 funccall_param_list: funccall_param_list ',' funccall_param .
+
+    $default  reduce using rule 28 (funccall_param_list)
+
+
+state 93
+
+   20 funcdef: TK_float TK_ident '(' funcdef_params ')' .
+
+    $default  reduce using rule 20 (funcdef)
+
+
+state 94
+
+   44 if_block: TK_if '(' condition_expr ')' code_body . else_block
+
+    TK_else  shift, and go to state 100
+
+    $default  reduce using rule 41 (else_block)
+
+    else_block  go to state 101
+
+
+state 95
+
+   19 funcdef: TK_int TK_ident '(' funcdef_params ')' .
+
+    $default  reduce using rule 19 (funcdef)
+
+
+state 96
+
+   24 funcdef: TK_void TK_ident '(' funcdef_params ')' .
+
+    $default  reduce using rule 24 (funcdef)
+
+
+state 97
+
+   23 funcdef: TK_string TK_ident '(' funcdef_params ')' .
+
+    $default  reduce using rule 23 (funcdef)
+
+
+state 98
+
+   21 funcdef: TK_bool TK_ident '(' funcdef_params ')' .
+
+    $default  reduce using rule 21 (funcdef)
+
+
+state 99
+
+    7 def_param_list: def_param_list ',' def_parameter .
+
+    $default  reduce using rule 7 (def_param_list)
+
+
+state 100
+
+   42 else_block: TK_else . if_block
+   43           | TK_else . code_body
+
+    TK_if  shift, and go to state 3
+    '{'    shift, and go to state 28
+
+    code_body  go to state 102
+    if_block   go to state 103
+
+
+state 101
+
+   44 if_block: TK_if '(' condition_expr ')' code_body else_block .
+
+    $default  reduce using rule 44 (if_block)
+
+
+state 102
+
+   43 else_block: TK_else code_body .
+
+    $default  reduce using rule 43 (else_block)
+
+
+state 103
+
+   42 else_block: TK_else if_block .
+
+    $default  reduce using rule 42 (else_block)

@@ -1,0 +1,239 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include "GravityChaos.h"
+
+extern void ( *sceneMainLoop )( void );
+extern float simulationTime;
+extern GravityForce gravity;
+extern Renderer *renderer;
+extern Graph *g[];
+
+extern DynamicValue rocketDisp, rocketVel, rocketAccel, simTime;
+extern float getMagnitude( void *data );
+
+DynamicValue b1X, b1Y;
+DynamicValue b2X, b2Y;
+DynamicValue b3X, b3Y;
+DynamicValue b4X, b4Y;
+GravityForce gravity2;
+GravityForce gravity3;
+
+// best variable naming EVAR
+GravityForce gravity4;
+GravityForce gravity5;
+GravityForce gravity6;
+
+void gravityChaosSetup( int numHeavies )
+{
+    sceneMainLoop = gravityChaosMainLoop;
+
+    /*
+    Cool values:
+    0.04, 0.11 <- vel of 2ndary masses
+    0.04, 0.13 <- vel of 2ndary masses
+    */
+
+    Sphere *b1, *b2, *b3, *b4;
+
+
+    if ( numHeavies != 1 )
+    {
+        b1 = new Sphere();
+        b1->setMass( getArg( 0 ) );
+        b1->setD0( 0.0, 2.5, 2.5 );
+        b1->setV0( 0.0, getArg( 3 ), getArg( 2 ) );
+
+        b3 = new Sphere();
+        b3->setMass( getArg( 1 ) );
+        b3->setD0( 0.0, -2.5, -2.5 );
+        b3->setV0( 0.0, getArg( 5 ), getArg( 4 ) );
+
+        b2 = new Sphere();
+        b2->setMass( 1.0 );
+        b2->setD0( 0.0, 0.0, 0.0 );
+        //b2->setV0( 0.0, -0.45, .85 );
+        b2->setV0( 0.0, getArg( 7 ), getArg( 6 ) );
+        b2->setScale( 0.1, 0.1, 0.1 );
+
+        gravity2.set( b3, b2 );
+        gravity3.set( b1, b3 );
+
+        b2->addForce( &gravity2 );
+
+        b1->addForce( &gravity3 );
+        b3->addForce( &gravity3 );
+        renderer->addEntity( b3 );
+    } else
+    {
+        b1 = new Sphere();
+        b1->setMass( getArg( 0 ) );
+        b1->setD0( 0.0, 0.0, 0.0 );
+        //b1->setV0( 0.0, -0.05, -0.13 );
+
+        b2 = new Sphere();
+        b2->setMass( 1.0 );
+        b2->setD0( 0.0, getArg( 2 ), getArg( 1 ) );
+        //b2->setV0( 0.0, -0.45, .85 );
+        b2->setV0( 0.0, getArg( 4 ), getArg( 3 ) );
+        b2->setScale( 0.1, 0.1, 0.1 );
+    }
+
+    if ( numHeavies == 3 )
+    {
+        b2->setD0( 0.0, 0.0, 5.95 );
+
+        b1->setD0( 0.0, 0.0, 5.0 );
+        b3->setD0( 0.0, 0.0, -5.0 );
+        b1->setMass( getArg( 0 ) );
+        b3->setMass( getArg( 0 ) );
+
+        b1->setScale( 0.75, 0.75, 0.75 );
+        b3->setScale( 0.75, 0.75, 0.75 );
+
+        b4 = new Sphere();
+        b4->setMass( getArg( 1 ) );
+        b4->setD0( 0.0, 0.0, 0.0 );
+        b4->setV0( 0.0, getArg( 8 ), getArg( 9 ) );
+
+        // Remember that b2 is the light object
+
+        gravity4.set( b4, b1 );
+        gravity5.set( b4, b2 );
+        gravity6.set( b4, b3 );
+
+        b2->addForce( &gravity5 );
+
+        b1->addForce( &gravity4 );
+        b3->addForce( &gravity6 );
+        b4->addForce( &gravity4 );
+        b4->addForce( &gravity6 );
+        renderer->addEntity( b4 );
+    }
+
+    gravity.set( b1, b2 );
+    b2->addForce( &gravity );
+    renderer->addEntity( b1 );
+    renderer->addEntity( b2 );
+
+    //g[ 1 ]->draws = false;
+    //g[ 2 ]->draws = false;
+    //g[ 3 ]->draws = false;
+
+    rocketDisp.trackFunc( getMagnitude, b2->getDPtr() );
+    rocketVel.trackFunc( getMagnitude, b2->getVPtr() );
+    rocketAccel.trackFunc( getMagnitude, b2->getAPtr() );
+    b2X.trackData( &b2->getPosPtr()->v[ 2 ] );
+    b2Y.trackData( &b2->getPosPtr()->v[ 1 ] );
+
+    if ( numHeavies != 1 )
+    {
+        b1X.trackData( &b1->getPosPtr()->v[ 2 ] );
+        b1Y.trackData( &b1->getPosPtr()->v[ 1 ] );
+
+        b3X.trackData( &b3->getPosPtr()->v[ 2 ] );
+        b3Y.trackData( &b3->getPosPtr()->v[ 1 ] );
+    }
+
+    if ( numHeavies == 3 )
+    {
+        b4X.trackData( &b4->getPosPtr()->v[ 2 ] );
+        b4Y.trackData( &b4->getPosPtr()->v[ 1 ] );
+    }
+
+    TrackVar *trackD = new TrackVar();
+    trackD->setFormat( "d: %f m" );
+    trackD->setTracker( &rocketDisp );
+    trackD->addToRenderer( renderer );
+
+    TrackVar *trackV = new TrackVar();
+    trackV->setFormat( "v: %f m/s" );
+    trackV->setTracker( &rocketVel );
+    trackV->addToRenderer( renderer );
+
+    TrackVar *trackA = new TrackVar();
+    trackA->setFormat( "a: %f m/s/s" );
+    trackA->setTracker( &rocketAccel );
+    trackA->addToRenderer( renderer );
+
+    TrackVar *trackX = new TrackVar();
+    trackX->setFormat( "x: %f" );
+    trackX->setTracker( &b2X );
+    trackX->addToRenderer( renderer );
+
+    TrackVar *trackY = new TrackVar();
+    trackY->setFormat( "y: %f" );
+    trackY->setTracker( &b2Y );
+    trackY->addToRenderer( renderer );
+
+    DataSet *dSets[ 7 ];
+
+    for ( int i = 0; i < 7; ++i )
+    {
+        dSets[ i ] = new DataSet();
+        dSets[ i ]->setup( renderer );
+    }
+
+    dSets[ 0 ]->track( &simTime, DataSet::AXIS_X );
+    dSets[ 0 ]->track( &rocketDisp, DataSet::AXIS_Y );
+    dSets[ 0 ]->setColor( 1.0, 0.0, 0.0, 1.0 );
+    g[ 0 ]->setUnits( "time (s)", "d (m)" );
+    g[ 0 ]->setTitle( "rocket d-t graph" );
+    g[ 0 ]->addDataSet( dSets[ 0 ] );
+
+    dSets[ 1 ]->track( &simTime, DataSet::AXIS_X );
+    dSets[ 1 ]->track( &rocketVel, DataSet::AXIS_Y );
+    dSets[ 1 ]->setColor( 0.0, 0.0, 1.0, 1.0 );
+    g[ 1 ]->setUnits( "time (s)", "v (m/s)" );
+    g[ 1 ]->setTitle( "rocket v-t graph" );
+    g[ 1 ]->addDataSet( dSets[ 1 ] );
+
+    dSets[ 2 ]->track( &simTime, DataSet::AXIS_X );
+    dSets[ 2 ]->track( &rocketAccel, DataSet::AXIS_Y );
+    dSets[ 2 ]->setColor( 0.0, 1.0, 0.0, 1.0 );
+    g[ 2 ]->setUnits( "time (s)", "a (m/s/s)" );
+    g[ 2 ]->setTitle( "rocket a-t graph" );
+    g[ 2 ]->addDataSet( dSets[ 2 ] );
+
+
+    dSets[ 3 ]->track( &b2X, DataSet::AXIS_X );
+    dSets[ 3 ]->track( &b2Y, DataSet::AXIS_Y );
+    dSets[ 3 ]->setColor( 0.0, 1.0, 1.0, 1.0 );
+
+    if ( numHeavies > 1 )
+    {
+        dSets[ 4 ]->track( &b1X, DataSet::AXIS_X );
+        dSets[ 4 ]->track( &b1Y, DataSet::AXIS_Y );
+        dSets[ 4 ]->setColor( 1.0, 1.0, 0.0, 1.0 );
+
+        dSets[ 5 ]->track( &b3X, DataSet::AXIS_X );
+        dSets[ 5 ]->track( &b3Y, DataSet::AXIS_Y );
+        dSets[ 5 ]->setColor( 0.0, 1.0, 0.0, 1.0 );
+
+        g[ 3 ]->addDataSet( dSets[ 4 ] );
+        g[ 3 ]->addDataSet( dSets[ 5 ] );
+    }
+
+    if ( numHeavies == 3 )
+    {
+        dSets[ 6 ]->track( &b4X, DataSet::AXIS_X );
+        dSets[ 6 ]->track( &b4Y, DataSet::AXIS_Y );
+        dSets[ 6 ]->setColor( 1.0, 0.0, 0.0, 1.0 );
+
+        g[ 3 ]->addDataSet( dSets[ 6 ] );
+    }
+
+    g[ 3 ]->setUnits( "x (m)", "y (m)" );
+    g[ 3 ]->setTitle( "2nd body path" );
+    g[ 3 ]->addDataSet( dSets[ 3 ] );
+};
+
+
+void gravityChaosMainLoop( void )
+{
+
+};
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)

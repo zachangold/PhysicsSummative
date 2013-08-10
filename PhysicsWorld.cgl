@@ -1,0 +1,84 @@
+Functions called:
+ sqrt (1247205 times)
+ cos (384 times)
+ sin (384 times)
+ sprintf (8269 times)
+ memmove (16009 times)
+ atoi (3 times)
+ fread (2 times)
+ ftell (2 times)
+ fseek (4 times)
+ fclose (6 times)
+ atof (43290 times)
+ strtok (43293 times)
+ strlen (13132 times)
+ fgets (4803 times)
+ memset (21 times)
+ fopen (6 times)
+ realloc (1 times)
+ memcpy (325 times)
+ delete (167 times)
+ delete[] (4 times)
+ free (27 times)
+ new[] (16 times)
+ new (180 times)
+ calloc (5 times)
+ malloc (21 times)
+Resource types used:
+ file stream (6 allocs, 1 max)
+ file handle (6 allocs, 1 max)
+ object array (16 allocs, 14 max)
+ object (180 allocs, 94 max)
+ memory block (27 allocs, 15 max)
+Modules used:
+ 002D0000 02/01/2002 10:00:00 C:\Installs\Borland\CBUILD~1\Bin\STLP45.DLL
+ 00400000 03/31/2012 20:56:48 C:\Dev\PhysicsWorld\PhysicsWorld.exe
+ 005E0000 09/28/2006 17:05:20 C:\Windows\system32\D3DX9_31.DLL
+ 0CD00000 02/01/2002 10:00:00 C:\Installs\Borland\CBUILD~1\Bin\CG32.DLL
+ 20C70000 02/15/2011 11:25:56 C:\Program
+ Files\CheckPoint\ZAForceField\WOW64\Plugins\ISWSHEX.dll
+ 32600000 02/01/2002 10:00:00 C:\Installs\Borland\CBUILD~1\Bin\CC3260.DLL
+ 66E80000 09/08/2011 13:08:24 C:\Windows\system32\atiumdva.dll
+ 67270000 09/08/2011 13:05:44 C:\Windows\system32\atiumdag.dll
+ 6BF10000 07/13/2009 21:15:10 C:\Windows\system32\D3D9.DLL
+ 73040000 07/13/2009 21:16:12 C:\Windows\system32\ntmarta.dll
+ 736C0000 09/08/2011 12:51:44 C:\Windows\system32\atiu9pag.dll
+ 73C20000 09/08/2011 13:34:10 C:\Windows\system32\aticfx32.dll
+ 73CE0000 07/13/2009 21:15:12 C:\Windows\system32\DINPUT8.DLL
+ 74240000 07/13/2009 21:11:26 C:\Windows\system32\uxtheme.dll
+ 742E0000 07/13/2009 21:15:10 C:\Windows\system32\d3d8thk.dll
+ 74460000 02/12/2012 23:12:24
+ C:\Windows\WinSxS\x86_microsoft.vc80.crt_1fc8b3b9a1e18e3b_8.0.50727.6195_none
+_d09154e044272b9a\MSVCR80.dll
+ 74580000 07/13/2009 21:15:26 C:\Windows\system32\HID.DLL
+ 74640000 07/13/2009 21:15:14 C:\Windows\system32\dwmapi.dll
+ 74880000 02/12/2012 23:12:24
+ C:\Windows\WinSxS\x86_microsoft.vc80.crt_1fc8b3b9a1e18e3b_8.0.50727.6195_none
+_d09154e044272b9a\MSVCP80.dll
+ 74BC0000 07/13/2009 21:16:18 C:\Windows\system32\VERSION.dll
+ 74DA0000 07/13/2009 21:16:20 C:\Windows\system32\WINMM.DLL
+ 74E00000 07/13/2009 21:15:08 C:\Windows\syswow64\CRYPTBASE.dll
+ 74E10000 12/11/2009 03:36:34 C:\Windows\syswow64\SspiCli.dll
+ 74E70000 07/13/2009 21:16:20 C:\Windows\syswow64\WLDAP32.dll
+ 74EC0000 07/13/2009 21:11:26 C:\Windows\syswow64\USER32.DLL
+ 751C0000 07/13/2009 21:11:24 C:\Windows\syswow64\LPK.dll
+ 75200000 07/13/2009 21:11:22 C:\Windows\system32\IMM32.DLL
+ 754C0000 07/13/2009 21:11:24 C:\Windows\syswow64\KERNELBASE.dll
+ 76160000 08/29/2009 02:57:32 C:\Windows\syswow64\MSASN1.dll
+ 76180000 07/13/2009 21:16:16 C:\Windows\syswow64\SETUPAPI.DLL
+ 76320000 07/13/2009 21:16:14 C:\Windows\SysWOW64\sechost.dll
+ 76340000 12/29/2009 02:55:36 C:\Windows\syswow64\WINTRUST.dll
+ 76370000 07/13/2009 21:16:14 C:\Windows\syswow64\ole32.dll
+ 764D0000 07/13/2009 21:15:08 C:\Windows\syswow64\CRYPT32.dll
+ 765F0000 07/13/2009 21:11:24 C:\Windows\syswow64\RPCRT4.dll
+ 766E0000 07/13/2009 21:11:24 C:\Windows\syswow64\kernel32.dll
+ 767E0000 07/13/2009 21:16:14 C:\Windows\syswow64\OLEAUT32.dll
+ 76A10000 07/13/2009 21:15:44 C:\Windows\syswow64\MSCTF.dll
+ 76B40000 07/13/2009 21:16:18 C:\Windows\syswow64\USP10.dll
+ 76BE0000 07/13/2009 21:14:54 C:\Windows\syswow64\ADVAPI32.DLL
+ 76C80000 07/13/2009 21:15:04 C:\Windows\syswow64\CFGMGR32.dll
+ 76CB0000 07/13/2009 21:15:52 C:\Windows\syswow64\msvcrt.dll
+ 76DF0000 07/13/2009 21:15:12 C:\Windows\syswow64\DEVOBJ.dll
+ 76E10000 07/13/2009 21:11:22 C:\Windows\syswow64\GDI32.dll
+ 772A0000 07/13/2009 21:17:52 C:\Windows\SysWOW64\ntdll.dll
+==========================================

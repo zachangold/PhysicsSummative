@@ -1,0 +1,18 @@
+void setup( void )
+{
+	print( "Sample script setup beginning:" );
+
+	Entity en;
+	en.setMass( 2.0 );
+	en.setD0( 0.0, 0.0, 0.0 );
+	en.setV0( 0.0, 10.0, 0.0 );
+
+	Force gravity;
+	gravity.setType( FORCE_GRAVITY );
+	gravity.setDirection( 0.0, 1.0, 0.0 );
+	gravity.setMagnitude( 9.80665 );
+
+	en.addForce( gravity );
+
+	print( "Sample script setup finished; running..." );
+};

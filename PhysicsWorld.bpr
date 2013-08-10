@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="PhysicsWorld.exe"/>
+    <OBJFILES value="Main.obj Renderer.obj Camera.obj Util.obj Entity.obj InputSource.obj 
+      Box.obj Graph.obj UIElement.obj DataSet.obj Sphere.obj Console.obj 
+      EditBox.obj TextBox.obj Button.obj D3DFont.obj Plane.obj TrackVar.obj 
+      GravityChaos.obj simpleDemo.obj"/>
+    <RESFILES value="PhysicsWorld.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="vcl.lib rtl.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi bcb2kaxserver.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT;_NO_VCL;_RTLDLL;USEPACKAGES"/>
+    <MAINSOURCE value="PhysicsWorld.bpf"/>
+    <INCLUDEPATH value="C:\Dev\PhysicsWorld;..\BeesGame;C:\Installs\Borland\CBuilder6\Projects;C:\Dev\SDL\Programs\TrafficGame;C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="C:\Dev\PhysicsWorld;..\BeesGame;C:\Installs\Borland\CBuilder6\Projects;C:\Dev\SDL\Programs\TrafficGame;C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-IC:\Dev\PhysicsWorld -I..\BeesGame 
+      -IC:\Installs\Borland\CBuilder6\Projects -IC:\Dev\SDL\Programs\TrafficGame 
+      -IC:\Dev\SDL\Programs\SDLdisplay -I$(BCB)\include -I$(BCB)\include\vcl 
+      -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b -k -y -v -vi- -tW 
+      -tWM- -c"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj $(PACKAGES) $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cw32i.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="PhysicsWorld.res" FORMNAME="" UNITNAME="PhysicsWorld.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="PhysicsWorld.bpf" FORMNAME="" UNITNAME="PhysicsWorld" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Main.cpp" FORMNAME="" UNITNAME="Main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Renderer.cpp" FORMNAME="" UNITNAME="Renderer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Camera.cpp" FORMNAME="" UNITNAME="Camera" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Util.cpp" FORMNAME="" UNITNAME="Util" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Entity.cpp" FORMNAME="" UNITNAME="Entity" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="InputSource.cpp" FORMNAME="" UNITNAME="InputSource" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Box.cpp" FORMNAME="" UNITNAME="Box" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Graph.cpp" FORMNAME="" UNITNAME="Graph" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UIElement.cpp" FORMNAME="" UNITNAME="UIElement" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DataSet.cpp" FORMNAME="" UNITNAME="DataSet" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Sphere.cpp" FORMNAME="" UNITNAME="Sphere" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Console.cpp" FORMNAME="" UNITNAME="Console" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="EditBox.cpp" FORMNAME="" UNITNAME="EditBox" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="TextBox.cpp" FORMNAME="" UNITNAME="TextBox" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Button.cpp" FORMNAME="" UNITNAME="Button" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="D3DFont.cpp" FORMNAME="" UNITNAME="D3DFont" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Plane.cpp" FORMNAME="" UNITNAME="Plane" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="TrackVar.cpp" FORMNAME="" UNITNAME="TrackVar" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="GravityChaos.cpp" FORMNAME="" UNITNAME="GravityChaos" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="simpleDemo.cpp" FORMNAME="" UNITNAME="simpleDemo" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+c:\installs\borland\cbuilder6\Bin\dclite60.bpl=Borland Integrated Translation Environment
+
+[HistoryLists\hlIncludePath]
+Count=4
+Item0=C:\Dev\PhysicsWorld;..\BeesGame;C:\Installs\Borland\CBuilder6\Projects;C:\Dev\SDL\Programs\TrafficGame;C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\include;$(BCB)\include\vcl
+Item1=..\BeesGame;C:\Installs\Borland\CBuilder6\Projects;C:\Dev\SDL\Programs\TrafficGame;C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\include;$(BCB)\include\vcl
+Item2=C:\Installs\Borland\CBuilder6\Projects;C:\Dev\SDL\Programs\TrafficGame;C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\include;$(BCB)\include\vcl
+Item3=C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=4
+Item0=C:\Dev\PhysicsWorld;..\BeesGame;C:\Installs\Borland\CBuilder6\Projects;C:\Dev\SDL\Programs\TrafficGame;C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\lib\obj;$(BCB)\lib
+Item1=..\BeesGame;C:\Installs\Borland\CBuilder6\Projects;C:\Dev\SDL\Programs\TrafficGame;C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\lib\obj;$(BCB)\lib
+Item2=C:\Installs\Borland\CBuilder6\Projects;C:\Dev\SDL\Programs\TrafficGame;C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\lib\obj;$(BCB)\lib
+Item3=C:\Dev\SDL\Programs\SDLdisplay;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=2
+Item0=_DEBUG
+Item1=_DEBUG;__USING_CNAME__;__NDS__;_SIZE_T_DEFINED;
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>

@@ -1,0 +1,46 @@
+int a;
+int b = 1;
+float c;
+float d = 2.0;
+string e;
+string f = "Hello!";
+bool g;
+bool h = false;
+Entity e;
+
+a = 3;
+c = 4.0;
+e = "Guten tag!";
+
+int i( int j, float k, Entity l );
+int m();
+int n( void );
+
+float i( int j, float k, Entity l );
+float m();
+float n( void );
+
+bool i( int j, float k, Entity l );
+bool m();
+bool n( void );
+
+string i( int j, float k, Entity l );
+string m();
+string n( void );
+
+void i( int j, float k, Entity l );
+void m();
+void n( void );
+
+Entity i( int j, float k, Entity l );
+Entity m();
+Entity n( void );
+
+n();
+m();
+i( 1, 1.0, myEntity );
+
+void main( string args )
+{
+	
+};
