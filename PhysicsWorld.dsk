@@ -103,11 +103,11 @@ ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
-[C:\Installs\Borland\CBuilder6\Projects\ProjectGroup1.bpg]
+[C:\Dev\GitHub\PhysicsSummative\ProjectGroup1.bpg]
 FormState=0
 FormOnTop=0
 
-[C:\Dev\PhysicsWorld\PhysicsWorld.bpr]
+[C:\Dev\GitHub\PhysicsSummative\PhysicsWorld.bpr]
 FormState=0
 FormOnTop=0
 
@@ -168,7 +168,7 @@ LeftCol=1
 
 [View2]
 Module=C:\Dev\PhysicsWorld\simpleDemo.cpp
-CursorX=37
+CursorX=46
 CursorY=51
 TopLine=19
 LeftCol=1
@@ -290,8 +290,8 @@ ClientHeight=84
 Create=1
 Visible=1
 State=0
-Left=0
-Top=122
+Left=578
+Top=267
 Width=525
 Height=517
 MaxLeft=-1
